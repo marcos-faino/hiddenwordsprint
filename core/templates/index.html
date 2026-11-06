@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-<main class="container" data-theme="dark">
+<main class="container">
     <nav>
         <ul>
             <li><h2>🔎<strong>Hidden Words</strong></h2></li>
@@ -42,7 +42,7 @@
             <li><a href="#" class="contrast">Products</a></li>
         </ul>
     </nav>
-    <article>
+    <article  data-theme="dark">
         <h3>Criar Caça-Palavras</h3>
         <form method="post">
         {% csrf_token %}
@@ -50,7 +50,7 @@
         <button type="submit">Gerar</button>
         </form>
     </article>
-    <article>
+    <article  data-theme="dark">
         {% if tabela %}
         <h2>Meu Caça Palavras</h2>
         <table>
