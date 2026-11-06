@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>HiddenWords</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        /* Esconde o formulário e navegação na hora de imprimir */
+        @media print {
+            nav, article:first-of-type, button {
+                display: none !important;
+            }
+            article {
+                border: none;
+                padding: 0;
+            }
+            table {
+                font-family: monospace;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Ajuste visual para as letras ficarem alinhadas */
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<main class="container" data-theme="dark">
+    <nav>
+        <ul>
+            <li><h2>🔎<strong>Hidden Words</strong></h2></li>
+        </ul>
+        <ul>
+            <li><a href="#" class="contrast">Sobre</a></li>
+            <li><a href="#" class="contrast">Services</a></li>
+            <li><a href="#" class="contrast">Products</a></li>
+        </ul>
+    </nav>
+    <article>
+        <h3>Criar Caça-Palavras</h3>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Gerar</button>
+        </form>
+    </article>
+    <article>
+        {% if tabela %}
+        <h2>Meu Caça Palavras</h2>
+        <table>
+            {% for linha in tabela %}
+                <tr>
+                    {% for col in linha %}
+                    <td>{{ col }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% if tabela %}
+        <section>
+            <h3>Palavras:</h3>
+            <h6>{{ palavras }}</h6>
+        </section>
+    <div class="grid">
+        <button onclick="window.print()" class="outline">🖨️ Imprimir / Gerar PDF</button>
+    </div>
+    {% endif %}
+    </article>
+
+</main>
+</body>
+</html>
