@@ -1,1 +1,1 @@
-web: gunicorn hiddenwords.wsgi:core --log-file -
+web: gunicorn hiddenwords.wsgi:application --log-file -
